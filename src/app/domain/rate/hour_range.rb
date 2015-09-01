@@ -31,6 +31,7 @@ module App
             #puts "[HourRange][calculate_price] num hours: #{(end_time.hour-start_time.hour)}. Price: #{@price}"
             price=(end_time.hour-start_time.hour)*@price
             #puts "[HourRange][calculate_price] price: #{price}"
+            $stdout.puts(@price)
             price
           else
             #puts "[HourRange][calculate_price] Price not found"
