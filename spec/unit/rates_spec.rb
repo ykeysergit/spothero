@@ -5,6 +5,22 @@ require 'unit/shared_examples/rates_adapter_example'
 describe App::Domain::Rate::Rates do
   include_examples 'rates adapter example'
   
+  context 'Saturday' do
+    context 'start at 7am' do
+      let(:filepath_str){File.expand_path('config/sample_data/basic_rates.json', File.dirname(__FILE__))}
+      let(:start_time_str){'2015-07-01T07:00:00Z'}
+      
+      context 'finish at 12pm' do
+        let(:end_time_str){'2015-07-01T12:00:00Z'}
+        
+        it 'shall cost 7500' do
+          price=rates_composite.calculate_price(input_adapter.start_time,input_adapter.end_time)
+          expect(price).to eq(7500)
+        end
+      end
+    end
+  end
+  
   context 'Monday' do
     context 'start at 9pm' do
       let(:start_time_str){'2015-08-31T21:00:00Z'}

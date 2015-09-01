@@ -35,7 +35,7 @@ module App
       content="Input criteria: #{@input_adapter}\n\n"+"Optimized JSON: \n#{@rates_composite.to_json}\n\n"+"Price: #{price}"
       
       
-      File.write(base_dir+'/'+MY_SOLUTION_DIR+'/'+Date.today.strftime('%d%m%Y')+'.txt',content)
+      File.write(base_dir+'/'+MY_SOLUTION_DIR+'/'+Date.today.strftime('%m%d%Y')+'.txt',content)
     end
   end
 end

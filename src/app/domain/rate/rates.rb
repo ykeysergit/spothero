@@ -21,10 +21,13 @@ module App
         # end_time: end DateTime
         def calculate_price(start_time,end_time)
           #puts "[Rates][calculate_price] start_time: #{start_time}, end_time: #{end_time}"
-          #puts "[Rates][calculate_price] Days range: #{days_range.to_a.length}"
           
           if(start_time.day==end_time.day)
             price=calculate_price_for_datetime(start_time,end_time,start_time)
+            #puts "[Rates][calculate_price] price: #{price}"
+            #puts
+            #puts
+            price
           else
             throw RuntimeError.new 'App does not support spanning multiple days'
           end

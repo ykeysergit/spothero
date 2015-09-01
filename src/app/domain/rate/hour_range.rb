@@ -27,7 +27,7 @@ module App
           #puts "[HourRange][calculate_price] end hour: #{@range.last}"
           #puts "[HourRange][calculate_price] price: #{@price}"
           
-          if start_time.hour >= @range.first && end_time.hour <= @range.last
+          if @range.first <= start_time.hour && end_time.hour <= @range.last
             #puts "[HourRange][calculate_price] num hours: #{(end_time.hour-start_time.hour)}. Price: #{@price}"
             price=(end_time.hour-start_time.hour)*@price
             #puts "[HourRange][calculate_price] price: #{price}"
