@@ -5,15 +5,57 @@ require 'unit/shared_examples/rates_adapter_example'
 describe App::Domain::Rate::Rates do
   include_examples 'rates adapter example'
   
-  
   context 'Monday' do
+    context 'start at 9pm' do
+      let(:start_time_str){'2015-08-31T21:00:00Z'}
+      
+      context 'end at 10pm' do
+        let(:end_time_str){'2015-08-31T22:00:00Z'}
+        
+        it 'shall cost 0' do
+          price=rates_composite.calculate_price(input_adapter.start_time,input_adapter.end_time)
+          expect(price).to eq(0)
+        end 
+      end
+    end
+    
+    context 'start at 5am' do
+      let(:start_time_str){'2015-08-31T05:00:00Z'}
+      
+      context 'end at 5am' do
+        let(:end_time_str){'2015-08-31T05:00:00Z'}
+        
+        it 'shall cost 0' do
+          price=rates_composite.calculate_price(input_adapter.start_time,input_adapter.end_time)
+          expect(price).to eq(0)
+        end  
+      end
+      
+      context 'end at 6am' do
+        let(:end_time_str){'2015-08-31T06:00:00Z'}
+        
+        it 'shall cost 0' do
+          price=rates_composite.calculate_price(input_adapter.start_time,input_adapter.end_time)
+          expect(price).to eq(0)
+        end  
+      end
+      
+      context 'end at 9am' do
+        let(:end_time_str){'2015-08-31T09:00:00Z'}
+        
+        it 'shall cost 0' do
+          price=rates_composite.calculate_price(input_adapter.start_time,input_adapter.end_time)
+          expect(price).to eq(0)
+        end  
+      end
+    end
+    
     context 'start at 9am' do
       let(:start_time_str){'2015-08-31T09:00:00Z'}
       
       context 'end at 10am' do
         let(:end_time_str){'2015-08-31T10:00:00Z'}
-        let(:rates_adapter){App::Adapters::RatesAdapter.new(rates_hash)}
-        
+
         it 'shall cost 1500' do
           price=rates_composite.calculate_price(input_adapter.start_time,input_adapter.end_time)
           expect(price).to eq(1500)
@@ -22,15 +64,28 @@ describe App::Domain::Rate::Rates do
       
       context 'end at 12pm' do
         let(:end_time_str){'2015-08-31T12:00:00Z'}
-        let(:rates_adapter){App::Adapters::RatesAdapter.new(rates_hash)}
-        
-        before do
-          #puts rates_composite  
-        end
         
         it 'shall cost 4500' do
           price=rates_composite.calculate_price(input_adapter.start_time,input_adapter.end_time)
           expect(price).to eq(4500)
+        end
+      end
+      
+      context 'end at 9pm' do
+        let(:end_time_str){'2015-08-31T21:00:00Z'}
+        
+        it 'shall cost 4500' do
+          price=rates_composite.calculate_price(input_adapter.start_time,input_adapter.end_time)
+          expect(price).to eq(18000)
+        end
+      end
+      
+      context 'end at 11pm' do
+        let(:end_time_str){'2015-08-31T23:00:00Z'}
+        
+        it 'shall cost 0' do
+          price=rates_composite.calculate_price(input_adapter.start_time,input_adapter.end_time)
+          expect(price).to eq(0)
         end
       end
     end
