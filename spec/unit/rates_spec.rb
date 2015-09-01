@@ -25,7 +25,7 @@ describe App::Domain::Rate::Rates do
         let(:rates_adapter){App::Adapters::RatesAdapter.new(rates_hash)}
         
         before do
-          puts rates_composite  
+          #puts rates_composite  
         end
         
         it 'shall cost 4500' do

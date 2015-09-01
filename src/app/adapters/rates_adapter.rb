@@ -11,7 +11,7 @@ module App
       
       def adapt
         @rates_hash['rates'].each do |rate_info|
-          puts "[RatesAdapter][adapt] adapt rate info: #{rate_info}"
+          #puts "[RatesAdapter][adapt] adapt rate info: #{rate_info}"
           adapt_rate_info(rate_info)
         end
         

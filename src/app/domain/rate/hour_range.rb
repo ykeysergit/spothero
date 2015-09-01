@@ -33,7 +33,7 @@ module App
             #puts "[HourRange][calculate_price] price: #{price}"
             price
           else
-            puts "[HourRange][calculate_price] Price not found"
+            #puts "[HourRange][calculate_price] Price not found"
             0
           end
         end

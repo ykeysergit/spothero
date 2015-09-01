@@ -6,9 +6,9 @@ module App
         
         def calculate_price(start_time,end_time)
           @hour_ranges.reduce(0) do |total_price, hour_range|
-            puts "[Day][calculate_price] Start time: #{start_time}, end time: #{end_time}, hour_range check: #{hour_range}"
+            #puts "[Day][calculate_price] Start time: #{start_time}, end time: #{end_time}, hour_range check: #{hour_range}"
             delta=hour_range.calculate_price(start_time,end_time)
-            puts "[Day][calculate_price] delta: #{delta}"
+            #puts "[Day][calculate_price] delta: #{delta}"
             total_price + delta
           end
         end
