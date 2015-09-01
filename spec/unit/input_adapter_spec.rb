@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'app/adapters/input_adapter'
-require 'app/app_namespace'
 require 'unit/shared_examples/input_adapter_example'
 
 describe App::Adapters::InputAdapter do

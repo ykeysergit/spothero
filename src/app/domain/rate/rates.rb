@@ -45,6 +45,10 @@ module App
           hash_display
         end
         
+        def to_json
+          JSON.pretty_generate(to_h)
+        end
+        
         def to_s
           JSON.generate(to_h)
         end
