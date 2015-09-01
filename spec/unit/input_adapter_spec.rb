@@ -1,8 +1,9 @@
 require 'spec_helper'
 require 'app/adapters/input_adapter'
+require 'app/app_namespace'
 
-describe 'input adapter' do
-  let(:input_adapter){InputAdapter.new(filepath_str, start_time_str,end_time_str)}
+describe App::Adapters::InputAdapter do
+  let(:input_adapter){App::Adapters::InputAdapter.new(filepath_str, start_time_str,end_time_str)}
   
   context 'valid input' do
     let(:filepath_str){File.expand_path('config/sample_data/basic_rates.json', File.dirname(__FILE__))}
