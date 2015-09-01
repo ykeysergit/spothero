@@ -2,12 +2,12 @@ require 'json'
 require 'date'
 
 class InputAdapter
-  attr_reader :start_time, :end_time, :file_path
+  attr_reader :start_time, :end_time, :filepath
   
-  def initialize(filepath,start_time_str,end_time_str)
-    set_filepath(filepath)
-    set_start_time(start_time_str)
-    set_end_time(end_time_str)
+  def initialize(filepath_str,start_time_str,end_time_str) 
+    self.filepath=(filepath_str)
+    self.start_time=(start_time_str)
+    self.end_time=(end_time_str)
   end
   
   def to_h
@@ -21,6 +21,14 @@ class InputAdapter
   def to_s
     to_json
   end
+  
+  def to_rates_h
+    if !filepath
+      throw RuntimeError.new('filepath is blank')
+    end
+    
+    JSON.parse(File.read(@filepath))
+  end
 
   def start_time=(time)
     @start_time=DateTime.iso8601(time)
@@ -30,13 +38,13 @@ class InputAdapter
     @end_time=DateTime.iso8601(time)
   end
 
-  def filepath=(filepath)
-    if !File.exists?(filepath)
-      raise ArgumentError.new('File does not exist: '+filepath)
-    elsif File.directory?(filepath)
-      raise ArgumentError.new('filepath is a directory: '+filepath)
+  def filepath=(filepath_str)
+    if !File.exists?(filepath_str)
+      raise ArgumentError.new('File does not exist: '+filepath_str)
+    elsif File.directory?(filepath_str)
+      raise ArgumentError.new('filepath is a directory: '+filepath_str)
     end
     
-    @filepath=filepath
+    @filepath=filepath_str
   end
 end
