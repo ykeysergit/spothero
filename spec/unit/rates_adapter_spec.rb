@@ -17,9 +17,16 @@ describe RatesAdapter do
   
   it 'shall create a composite structure' do
     #puts rates_adapter.adapt.to_s
-    
     expect(rates_composite).to be_truthy
-    expect(rates_composite.to_h['rates']).to be_truthy
-    expect(rates_composite.to_h['rates']['sun']).to be_truthy
+    expect(rates_composite.to_h[:rates]).to be_truthy
+    expect(rates_composite.to_h[:rates][:sun]).to be_truthy
+    expect(rates_composite.to_h[:rates][:sun][:times]).to be_truthy
+    expect(rates_composite.to_h[:rates][:sun][:times].length).to eq(2)
+    expect(rates_composite.to_h[:rates][:sun][:times][0][:start_hour]).to eq(900)
+    expect(rates_composite.to_h[:rates][:sun][:times][0][:end_hour]).to eq(2100)
+    expect(rates_composite.to_h[:rates][:sun][:times][0][:price]).to eq(2000)
+    expect(rates_composite.to_h[:rates][:sun][:times][1][:start_hour]).to eq(100) 
+    expect(rates_composite.to_h[:rates][:sun][:times][1][:end_hour]).to eq(700) 
+    expect(rates_composite.to_h[:rates][:sun][:times][1][:price]).to eq(925)    
   end
 end
